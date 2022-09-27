@@ -5,6 +5,7 @@ import invidioushandler
 import urllib
 import subprocess
 import os.path
+import config
 
 # Define watch blueprint
 watch = Blueprint('watch', __name__)
@@ -32,7 +33,7 @@ def video():
         return redirect(url_for('static', filename='videos/' + videoInfo['videoId'] + '-mp4v.mp4'))
 
     # While cached folder size is greater than 10GB, delete oldest file if it is not in use
-    while getFolderSize('static/videos') > 10000000000:
+    while getFolderSize('static/videos') > config.CACHE_SIZE:
         # Get oldest file
         oldestFile = min(glob.iglob('static/videos/*'), key=os.path.getctime)
 
