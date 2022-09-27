@@ -9,4 +9,4 @@ homepage = Blueprint('homepage', __name__)
 @homepage.route('/')
 def home():
     # Render homepage template
-    return render_template('home.html', title = "MobileVideoShare")
+    return render_template('home.html', title = "MobileStreamViewer")
