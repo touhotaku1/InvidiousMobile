@@ -1,0 +1,4 @@
+__pycache__/
+static/videos/
+ffmpeg.exe
+Run.bat

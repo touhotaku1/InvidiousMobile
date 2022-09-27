@@ -1,0 +1,3 @@
+{% for video in videos %}
+    <li><a href="{{ url_for('watch.video')}}?v={{ video.videoId }}">{{video.title}}</a></li>
+{% endfor %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% include 'head.html' %}
+
+<body orient="landscape">
+    <h1 id="pageTitle">{{ title }}</h1>
+    <a class="button" onclick="showSearchForm()">Search</a>
+    <a id="homeButton" class="button" style="display: block;" href="{{ url_for('homepage.home')}}">Home</a>
+    <ul id="results" title="Search Results" selected="true">
+        {% include 'videos.html' %}
+    </ul>
+    <form id="searchForm" name="searchForm" class="dialog" action="{{ url_for('search.results')}}">
+        <fieldset>
+            <h1>Search</h1>
+            <a id="closeButton" class="button" style="display: block;" onclick="hideSearch()">Close</a>
+            <a class="button toolButton goButton" href="#" onclick="document.searchForm.submit();return false;">Search</a>
+            <input type="text" id="searchField" name="q">
+        </fieldset>
+    </form>
+</body></html>
