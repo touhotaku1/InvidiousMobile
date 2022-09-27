@@ -25,5 +25,4 @@ def results():
 
     # Get search results
     searchResults = invidioushandler.getResults(query, pageNumber, searchType)
-
     return render_template('searchPage.html', title = query, videos = searchResults)

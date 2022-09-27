@@ -8,8 +8,5 @@ featured = Blueprint('featured', __name__)
 # featuredPage route
 @featured.route('/featuredPage')
 def featuredPage():
-    # Get featured videos
-    featuredVideos = invidioushandler.getFeatured()
-
     # Render homepage template
-    return render_template('featured.html', title = "Featured", videos = featuredVideos)
+    return render_template('featured.html', title = "Featured", videos = invidioushandler.getFeatured())

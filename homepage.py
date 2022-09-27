@@ -8,8 +8,5 @@ homepage = Blueprint('homepage', __name__)
 # Homepage route
 @homepage.route('/')
 def home():
-    # Get featured videos
-    featuredVideos = invidioushandler.getFeatured()
-
     # Render homepage template
-    return render_template('home.html', title = "MobileVideoShare", videos = featuredVideos)
+    return render_template('home.html', title = "MobileVideoShare")

@@ -34,13 +34,13 @@ def getTrendingVideos(category):
 
     return r
 
-# Gets metadata of a video, as well as adds needed parameters
+# Gets metadata of a video, as well as adds some parameters
 def getVideoMetadata(videoId):
     videoURL = invidious+"/api/v1/videos/"+videoId 
 
     r = requests.get(videoURL).json()
 
-    # Store possible streams (h.264, 480p and lower, mp4)
+    # Store possible streams (h.264, 360p and lower, mp4)
     possibleStreams = []
 
     # Find h264 mp4s in 360p or lower
@@ -73,19 +73,10 @@ def getVideoMetadata(videoId):
     # Add upload date
     r['uploadDate'] = convertDate(r['published'])
 
-    # Add list for tags
-    r['tags'] = []
-
     # Check if number of tags is greater than 6
     if len(r['keywords']) > 6:
         # Set number of tags to 6
         r['keywords'] = r['keywords'][:6]
-
-    # Add tags r['tags']
-    for tag in range(0, len(r['keywords'])):
-        # Check if tag exists
-        if r['keywords'][tag] != '':
-            r['tags'].append(r['keywords'][tag])
     
     return r
 
@@ -100,7 +91,7 @@ def getComments(videoId):
         return r['comments']
     else:
         return [{'author': 'No Comments', 'content': 'There are no comments for this video.',
-        'authorThumbnails': url_for('static', filename='pop.png')}]
+        'authorThumbnails': url_for('static', filename='icon.png')}]
 
 # Get search results
 def getResults(query, pageNumber, searchType):
@@ -116,10 +107,6 @@ def getResults(query, pageNumber, searchType):
         print("Request Failed")
         print(r)
         getResults(query, pageNumber, searchType)
-
-    # If there are no results, return results of previous page (recursive)
-    if r == []:
-        return getResults(query, int(pageNumber)-1, searchType)
 
     # Format runTime and viewCount
     for video in r:
