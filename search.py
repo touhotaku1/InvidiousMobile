@@ -26,3 +26,14 @@ def results():
     # Get search results
     searchResults = invidioushandler.getResults(query, pageNumber, searchType)
     return render_template('searchPage.html', title = query, videos = searchResults)
+
+# Results route for related
+@search.route('/related')
+def related():
+    # Get video ID
+    videoID = request.args.get("v")
+
+    # Get related videos
+    relatedVideos = invidioushandler.getRelatedVideos(videoID)
+
+    return render_template('searchPage.html', title = "Related Videos", videos = relatedVideos)

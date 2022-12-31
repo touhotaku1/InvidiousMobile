@@ -56,3 +56,30 @@ def video():
 
     # Redirect user to downloaded video
     return redirect(url_for('static', filename='videos/'+videoID+'-mp4v.mp4'))
+
+# Add route for thumbnail
+@watch.route('/thumbnail')
+def thumbnail():
+    # Get video ID
+    videoID = request.args.get("v")
+
+    # Get video metadata
+    videoInfo = invidioushandler.getVideoMetadata(videoID)
+
+    # Store thumbnail image in a variable
+    thumbnail = urllib.request.urlopen(videoInfo['videoThumbnails'][5]['url']).read()
+
+    # Return thumbnail image
+    return thumbnail
+
+# Video info page route
+@watch.route('/videoinfo')
+def videoinfo():
+    # Get video ID
+    videoID = request.args.get("v")
+
+    # Get video metadata
+    videoInfo = invidioushandler.getVideoMetadata(videoID)
+
+    # Return video metadata
+    return render_template('videoPage.html', title = videoInfo['title'], video = videoInfo)

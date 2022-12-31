@@ -164,3 +164,33 @@ input {
     font-size: 16px;
     font-weight: normal;
 }
+
+#thumbnail {
+    /*background: black;*/
+    width: 120px;
+    height: 88px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-size: cover;
+}
+
+#title {
+    position: relative;
+    width: 190px;
+    top: -88px;
+    left: 120px;
+    font-size: 16px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#pageTitle
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.videoThumbnail { height: 88px; overflow: hidden;}

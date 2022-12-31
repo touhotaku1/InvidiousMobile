@@ -1,3 +1,6 @@
 {% for video in videos %}
-    <li><a href="{{ url_for('watch.video')}}?v={{ video.videoId }}">{{video.title}}</a></li>
+    <li class="videoThumbnail" style="height: 88px;">
+        <div id="thumbnail" style="background-image: url('{{ url_for('watch.thumbnail') }}?v={{ video.videoId }}');"></div>
+        <a id="title" href="{{ url_for('watch.videoinfo')}}?v={{ video.videoId }}">{{video.title}}</a>
+    </li>
 {% endfor %}

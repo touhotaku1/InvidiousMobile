@@ -127,6 +127,16 @@ def convertToHMS(timeInSeconds):
     else:
         return str(timeInSeconds // 60) + ':' + str(timeInSeconds % 60).zfill(2)
 
+# Gets related videos
+def getRelatedVideos(videoId):
+    # Get video metadata
+    videoURL = invidious+"/api/v1/videos/"+videoId
+
+    videoMetadata = requests.get(videoURL).json()
+
+    # Return related videos
+    return videoMetadata['recommendedVideos']
+
 # Converts URL to percent encoded URL
 def percentEncode(url):
     return urllib.parse.quote(url, safe='')
