@@ -28,6 +28,10 @@ def video():
 
     videoInfo = invidioushandler.getVideoMetadata(videoID)
 
+    # If the video is longer than maximum length in config, return an alert error
+    if videoInfo['lengthSeconds'] > config.MAXIMUM_LENGTH:
+        return "Videos longer than " + str(config.MAXIMUM_LENGTH) + " seconds are not supported."
+
     # Check if the video is already on the server in the videos folder. If so, redirect to cached file
     if os.path.exists('static/videos/' + videoInfo['videoId'] + '-mp4v.mp4'):
         return redirect(url_for('static', filename='videos/' + videoInfo['videoId'] + '-mp4v.mp4'))
